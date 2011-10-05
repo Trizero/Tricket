@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <propel>
+    <datasources default="Tricket">
+      <datasource id="Tricket">
+        <adapter>mysql</adapter> <!-- sqlite, mysql, myssql, oracle, or pgsql -->
+        <connection>
+          <dsn>mysql:host=localhost;dbname=Tricket</dsn>
+          <user>root</user>
+          <password></password>
+        </connection>
+      </datasource>
+    </datasources>
+  </propel>
+</config>

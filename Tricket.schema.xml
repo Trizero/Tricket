@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="Tricket">
+  <table name="Cliente">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="nome" type="LONGVARCHAR"/>
+    <column name="cognome" type="LONGVARCHAR"/>
+    <column name="email" type="LONGVARCHAR"/>
+    <column name="username" type="LONGVARCHAR"/>
+    <column name="password" type="VARCHAR" size="40"/>
+  </table>
+  <table name="Dipendenti">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="nome" type="LONGVARCHAR"/>
+    <column name="cognome" type="LONGVARCHAR"/>
+    <column name="email" type="LONGVARCHAR"/>
+    <column name="username" type="LONGVARCHAR"/>
+    <column name="password" type="VARCHAR" size="40"/>
+  </table>
+  
+  <table name="Ticket">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="Area_id" type="INTEGER" required="true"/>
+    <column name="Cliente_id" type="INTEGER" required="true"/>
+    <column name="nomeReferente" type="LONGVARCHAR"/>
+    <column name="emailRiferimento" type="LONGVARCHAR"/>
+    <column name="stato" type="DOUBLE"/>
+    <foreign-key foreignTable="Cliente" name="Rel_08" onDelete="none">
+      <reference local="Cliente_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="Area" name="Rel_09" onDelete="none">
+      <reference local="Area_id" foreign="id"/>
+    </foreign-key>
+  </table>
+  
+  
+  <table name="Area">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="nome" type="LONGVARCHAR"/>
+  </table>
+  
+  <table name="Messaggio">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="Ticket_id" type="INTEGER" required="true"/>
+    <column name="titolo" type="LONGVARCHAR"/>
+    <column name="testo" type="LONGVARCHAR"/>
+    <foreign-key foreignTable="Ticket" name="Rel_07" onDelete="none">
+      <reference local="Ticket_id" foreign="id"/>
+    </foreign-key>
+  </table>
+  
+  <table name="AreaCliente">
+    <column name="Cliente_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="Area_id" type="INTEGER" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="Cliente" name="Rel_01" onDelete="none">
+      <reference local="Cliente_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="Area" name="Rel_02" onDelete="none">
+      <reference local="Area_id" foreign="id"/>
+    </foreign-key>
+  </table>
+  
+  <table name="AreaDipendente">
+    <column name="Dipendenti_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="Area_id" type="INTEGER" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="Dipendenti" name="Rel_05" onDelete="none">
+      <reference local="Dipendenti_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="Area" name="Rel_06" onDelete="none">
+      <reference local="Area_id" foreign="id"/>
+    </foreign-key>
+  </table>
+</database>
